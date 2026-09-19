@@ -97,12 +97,24 @@ def main():
         }""", CATALOG)
         page.locator('[data-color-id="' + choice + '"]').click()
         page.wait_for_function('!document.querySelector("#reset-progress").disabled')
+    sent_at = {}
     def login(page, address, wrong_first=False):
         if not page.locator('#settings').evaluate('(el)=>el.open'): page.click('#open-settings')
         page.get_by_role('button', name='Explore cloud saves', exact=True).click()
         page.fill('#cloud-email', address)
         seen = mail_ids()
-        page.get_by_role('button', name='Email me a code', exact=True).click()
+        # Separate browsers still share the server's one-second recipient limit.
+        # Respect it without weakening the real Auth service's configuration.
+        remaining = sent_at.get(address, 0) + 1.25 - time.monotonic()
+        if remaining > 0: page.wait_for_timeout(remaining * 1000)
+        with page.expect_response(lambda response: response.url.startswith(api + '/auth/v1/otp') and response.request.method == 'POST') as event:
+            page.get_by_role('button', name='Email me a code', exact=True).click()
+        response = event.value
+        if not 200 <= response.status < 300:
+            known = {'over_email_send_rate_limit', 'over_request_rate_limit', 'email_address_invalid', 'email_provider_disabled', 'signup_disabled'}
+            error_code = response.json().get('error_code')
+            raise AssertionError(f'OTP request failed: HTTP {response.status}, code={error_code if error_code in known else "unclassified"}')
+        sent_at[address] = time.monotonic()
         page.wait_for_selector('#cloud-code')
         otp = code_for(address, seen)
         if wrong_first:
