@@ -1,0 +1,7 @@
+# Preserve exact upstream data and full license bytes, including original endings.
+data/xkcd-rgb-source.txt -text -whitespace
+public/fonts/dmsans-OFL.txt -text -whitespace
+public/THIRD_PARTY_NOTICES.txt -text -whitespace
+licenses/npm/* -text -whitespace
+# This is reproducible generated upstream SDK code, including its comments.
+public/vendor/supabase.js -whitespace

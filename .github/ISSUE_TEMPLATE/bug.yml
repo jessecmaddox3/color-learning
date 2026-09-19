@@ -1,0 +1,23 @@
+name: Bug report
+description: A concrete problem using Colors
+body:
+  - type: markdown
+    attributes:
+      value: Please use invented learners. Do not attach real exports, emails, codes, keys or account tokens. Use SECURITY.md for sensitive reports.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include what you expected and the smallest steps that reproduce it.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and app version
+      description: Include whether you used the offline download or a hosted copy.
+  - type: textarea
+    id: example
+    attributes:
+      label: Invented example or screenshot
+      description: Check screenshots for names, email addresses and other private information first.

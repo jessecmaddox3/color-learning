@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colors | Learn the names behind the shades</title>
+  <meta name="description" content="Learn 949 color names, five at a time. A personal learning tool you can make your own. Works offline, with optional cloud saves." />
+  <link rel="stylesheet" href="./colors.css" />
+</head>
+<body>
+  <div class="layout">
+    <main class="app">
+      <header class="app-bar"><span id="current-learner">Choose a learner</span><div><button id="switch-profile" class="quiet" hidden>Switch learner</button><button id="open-settings" class="quiet">Settings</button></div></header>
+      <p id="notice" class="notice" role="status" hidden></p>
+      <section id="name-screen" class="screen">
+        <h1>Colors</h1>
+        <p class="intro">Learn the names behind the shades. Five colors at a time, until they stick.</p>
+        <div id="known-learners" class="known-learners" hidden></div>
+        <label for="name-input">Create a learner with a nickname</label>
+        <form id="name-form">
+          <input id="name-input" type="text" autocomplete="off" required maxlength="60" placeholder="Your nickname" />
+          <button id="create-learner" type="submit" disabled>Start</button>
+        </form>
+        <p id="profile-limit" hidden>This device has eight learners. Open one, then use Settings to export and remove it before adding another.</p>
+        <p class="small">Same nickname? Still a separate learner. Returning learners can use the Continue buttons above.</p>
+        <details><summary>How it works</summary><p>You start with 11 familiar colors and practice five new ones at a time. Three correct answers in a row master a color. A mistake resets that color’s streak.</p><p>The full 949-name xkcd survey list is included, with some informal and profane names. Color appearance depends on your screen and vision. This is a vocabulary game, not a vision test.</p><p>No AI subscription, account or internet connection is needed to play a downloaded copy.</p></details>
+      </section>
+
+      <section id="quiz-screen" class="screen" hidden>
+        <div id="question"><h2 class="question-heading">What color is this?</h2><div class="swatch" id="swatch" role="img" aria-label="Color swatch to identify"></div>
+        <div class="choices" id="choices"></div><p class="keyboard-tip">Choose a name, or press 1, 2, 3 or 4.</p>
+        <p id="feedback" class="feedback" hidden aria-live="polite"></p></div>
+        <section id="complete" hidden aria-live="polite"><h2>Every shade, learned.</h2><p>You’ve mastered all 949 color names. Your complete spectrum is yours to keep.</p><p>Export your progress in Settings, try another learner, or reset when you want a fresh start.</p></section>
+        <p class="stats" id="stats" aria-live="polite"></p>
+      </section>
+      <p id="save-status" class="save-status" role="status">Opening saved profiles…</p>
+    </main>
+
+    <aside id="spectrum" class="spectrum" hidden aria-label="Your color mastery, arranged as a spectrum">
+      <canvas id="spectrum-canvas"></canvas>
+    </aside>
+  </div>
+  <dialog id="settings" aria-labelledby="settings-profile"><header class="dialog-header"><h2 id="settings-profile">Learners and saving</h2><button id="close-settings" class="quiet" aria-label="Close settings">Close</button></header>
+    <p id="settings-notice" class="notice" role="status" hidden></p>
+    <h3>Keep a copy</h3><p>Exports contain this learner’s nickname and progress. Store them somewhere private. Import creates a separate local learner.</p>
+    <div class="settings-actions"><button id="export-progress" disabled>Export progress</button><label class="file-label" for="import-progress">Import progress<input id="import-progress" type="file" accept=".json,application/json" /></label><button id="export-recovery" disabled>Show recovery copies</button></div><div id="recovery-copies" class="settings-actions" hidden></div>
+    <p class="small">Clearing browser data can erase device saves. Private browsing may not keep them after closing. A recovery export keeps alternate snapshots after conflicting saves.</p>
+    <h3>Cloud saves</h3><div id="cloud-panel"></div>
+    <h3>Start fresh</h3><p>Reset keeps this learner and starts their progress over. If connected, the reset also saves to cloud. Removing a local learner keeps any cloud copy.</p><div class="settings-actions"><button id="reset-progress" disabled>Reset progress</button><button id="remove-profile" disabled>Remove local learner</button></div>
+    <p class="small"><a href="./THIRD_PARTY_NOTICES.txt">Credits and licenses</a></p>
+  </dialog>
+  <noscript><p class="notice">This game needs JavaScript enabled in your browser. The downloaded HTML includes everything it needs to play without an internet connection.</p></noscript>
+  <script src="./dist/app.js" defer></script>
+</body>
+</html>

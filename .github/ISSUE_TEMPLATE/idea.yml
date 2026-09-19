@@ -1,0 +1,10 @@
+name: Improvement idea
+description: A useful change or clearer instruction
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to improve?
+      description: Tell us the use case and the behavior you want. No personal learner data needed.
+    validations:
+      required: true

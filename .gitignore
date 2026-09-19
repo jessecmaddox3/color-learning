@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+coverage/
+artifacts/
+public/cloud-config.local.js
+public/cloud-config.local.json
+__pycache__/
+*.pyc
+supabase/.temp/
+.env
+.env.*
