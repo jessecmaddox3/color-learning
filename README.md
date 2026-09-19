@@ -4,7 +4,7 @@
 
 **Learn color names, five at a time.** Identify a swatch, build a streak, and watch your spectrum fill in. The full 949-color course is here, from familiar basics to the shades you can see but never quite name.
 
-**[Download the offline app](https://github.com/jessecmaddox3/color-learning/releases/latest/download/Color-Learning.html)**
+**[Play in your browser](https://jessemaddox.com/projects/color-learning/play/)** · **[Download the offline app](https://github.com/jessecmaddox3/color-learning/releases/latest/download/Color-Learning.html)**
 
 I built this for my own personal use, around the way I like to learn things. Make it your own, and feel free to improve mine. Hopefully it gives you a useful starting point, or at the very least some ideas. Cheers!
 
@@ -72,6 +72,6 @@ python3 scripts/test-browser.py
 python3 scripts/test-cloud-schema.py
 ```
 
-The browser check needs Python Playwright 1.58.0 and its Chromium browser. The SQL check needs PostgreSQL 17 and creates only a disposable local database. The separate Supabase integration check exercises actual email-code auth and REST; see [cloud setup](docs/cloud-setup.md) for its current evidence. Unit tests with invented HTTP responses do not establish production backend isolation.
+The browser check needs Python Playwright 1.58.0 and its Chromium browser. The SQL check needs PostgreSQL 17 and creates only a disposable local database. The separate Supabase integration check exercises actual email-code auth and REST; see [cloud setup](docs/cloud-setup.md) for its current evidence. All checks passed with Node 22 and 24, a network-blocked offline browser, and a disposable local Supabase stack. This includes actual email codes, two-account isolation, concurrent saves, conflict choices, lost-response recovery, and cross-device restoration. See the [integration run](https://github.com/jessecmaddox3/color-learning/actions/runs/35427896149). A host still needs to verify its own deployment and email delivery.
 
 The README hero is [ChatGPT-generated marketing artwork](docs/artwork.md). No runtime AI service is used.

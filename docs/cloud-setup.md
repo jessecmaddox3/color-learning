@@ -4,7 +4,9 @@
 
 ## Verification status
 
-The current candidate passes SDK transport tests with invented HTTP responses and real PostgreSQL 17 ownership/concurrency tests. Offline browser play, backups, and restoration have been exercised. **Full local Supabase email-code plus REST integration is being prepared and is not yet verified in this candidate.** This paragraph must be updated with the actual integration result before a release claims verified cloud support.
+The [September 19, 2026 integration run](https://github.com/jessecmaddox3/color-learning/actions/runs/35427896149) passed with actual local Supabase Auth, PostgREST, Kong and Mailpit. It exercised new and returning email-code sign-in, wrong and reused codes, two-account row isolation, ownership constraints, concurrent revision checks, explicit conflict choices, a committed save whose response was lost, restoration in another browser, account switching with pending work, and switching learners during an upload. Every email recipient and learner was invented; all services were confined to the disposable runner.
+
+The same run passed 67 core tests on Node 22 and 24 and the offline browser suite, with no external requests during offline play. Separately, real PostgreSQL 17 checks covered the ownership rules and concurrency.
 
 A passing disposable integration test establishes the app’s behavior with local Auth, JWTs, PostgREST, and row-level security. It does not prove your production SMTP delivery, your deployment configuration, or every policy in Supabase’s managed gateway.
 
